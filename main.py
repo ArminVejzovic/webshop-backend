@@ -9,11 +9,7 @@ import os
 from auth.auth import authenticate_user, create_access_token
 from auth.middleware import verify_request
 
-from services.articles_service import get_all_articles
-from services.orders_service import get_all_orders
-
 from shemas.shemas import LoginData
-
 
 load_dotenv()
 
@@ -48,6 +44,3 @@ async def login(data: LoginData):
     return {"access_token": access_token, "token_type": "bearer"}
 
 
-@app.get("/orders")
-async def get_orders(user: dict = Depends(verify_request)):
-    return get_all_orders()
