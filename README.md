@@ -28,9 +28,7 @@ Aplikacija koristi dva REST API-ja za upravljanje podacima
   Ovaj API služi za dohvat i upravljanje artiklima koji su dostupni u web shopu. Svaki artikal ima jedinstveni ID, naziv, cijenu, količinu, sliku, opis i datum kreiranja.
 
   [
-    
     {
-    
       "id": 23,
       
       "name": "Set Tanjira",
@@ -44,9 +42,7 @@ Aplikacija koristi dva REST API-ja za upravljanje podacima
       "created_at": "2025-07-26T19:32:23.853Z",
       
       "description": "Set Tanjira 6 komada"
-    
     }
-  
   ]
 
 Polja:
@@ -71,9 +67,7 @@ Polja:
   Ovaj API omogućava kreiranje i pregled narudžbi korisnika. Svaka narudžba sadrži listu artikala, status, informacije o kupcu i vremena obrade.
 
 [
-  
-  {
-  
+  { 
     "id": 33,
     
     "items": "23, 23, 24",
@@ -93,9 +87,7 @@ Polja:
     "customer_lastname": "Vejzovic",
     
     "customer_firstname": "Armin"
-  
   },
-  
 ]
 
 Polja:
