@@ -16,6 +16,8 @@ load_dotenv()
 
 FRONTEND_URL = os.getenv("FRONTEND_URL", "").strip()
 
+print(FRONTEND_URL)
+
 app = FastAPI()
 
 app.add_middleware(
