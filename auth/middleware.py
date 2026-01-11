@@ -1,21 +1,18 @@
-from fastapi import Request, HTTPException, Depends
+from fastapi import HTTPException, Depends, status
 from fastapi.security import OAuth2PasswordBearer
-from jose import JWTError, jwt
-import os
 from dotenv import load_dotenv
 
+from auth.auth import decode_token, is_admin_payload
+
 load_dotenv()
-SECRET_KEY = os.getenv("SECRET_KEY")
-ALGORITHM = os.getenv("ALGORITHM")
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/token")
 
-def verify_token(token: str):
-    try:
-        return jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-    except JWTError:
-        raise HTTPException(status_code=401, detail="Invalid token")
-
-async def verify_request(token: str = Depends(oauth2_scheme)):
-    payload = verify_token(token)
+async def require_admin(token: str = Depends(oauth2_scheme)):
+    payload = decode_token(token)
+    if not is_admin_payload(payload):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Admin access required",
+        )
     return payload
